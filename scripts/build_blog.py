@@ -61,4 +61,6 @@ if __name__ == '__main__':
         if item.name != 'blog':
             shutil.move(str(item), str(blog / item.name))
     shutil.copy2(workspace / 'static' / 'index.html', docs / 'index.html')
+    shutil.copy2(workspace / 'static' / 'home.css', docs / 'home.css')
+    shutil.copy2(workspace / 'static' / 'avatar.png', docs / 'avatar.png')
 

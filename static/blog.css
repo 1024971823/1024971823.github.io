@@ -1,0 +1,19 @@
+/* Personal touches on Gmeek's accessible light/dark theme. */
+body { line-height: 1.75; }
+#header { padding-bottom: 24px; margin-bottom: 24px; align-items: center; }
+.avatar { border: 3px solid #b8dbea; box-shadow: 0 5px 24px #80b9d52a; }
+#header h1 a { font-family: system-ui, sans-serif; font-weight: 750; }
+.author-tools { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin: 0 0 28px; font-size: 14px; }
+.author-tools .btn-primary { background: #247491; border-color: #247491; }
+.empty-state { padding: 38px 26px; margin: 24px 0; background: #80b9d516; border: 1px solid #80b9d540; border-radius: 18px; }
+.empty-state h2 { margin-top: 0; }
+.SideNav { border-radius: 12px; overflow: hidden; }
+.SideNav:empty { display: none; }
+.SideNav-item { padding: 20px 16px; }
+#content .markdown-body { line-height: 1.9; }
+@media (max-width: 600px) {
+  body { padding: 24px 18px; }
+  #header { flex-wrap: wrap; gap: 14px; }
+  #header h1 a { font-size: 27px; }
+  .author-tools { gap: 14px; }
+}

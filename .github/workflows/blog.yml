@@ -1,0 +1,65 @@
+name: Publish blog
+
+on:
+  push:
+    branches: [main]
+    paths: [config.json, 'static/**', 'scripts/**', '.github/workflows/blog.yml', '.github/ISSUE_TEMPLATE/**']
+  issues:
+    types: [opened, edited, labeled, unlabeled, closed, reopened, deleted, pinned, unpinned]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event_name != 'issues' || github.event.issue.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/configure-pages@v5
+      - name: Prepare publishing label
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create blog --color 80b9d5 --description "发布到个人博客" --force
+      - name: Fetch Gmeek v2.22
+        run: git clone --depth 1 --branch v2.22 https://github.com/Meekdai/Gmeek.git "$RUNNER_TEMP/gmeek"
+      - name: Install generator dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/gmeek/requirements.txt"
+      - name: Generate website from published articles
+        env:
+          BLOG_TOKEN: ${{ github.token }}
+          BLOG_REPOSITORY: ${{ github.repository }}
+        run: python scripts/build_blog.py "$RUNNER_TEMP/gmeek"
+      - name: Verify generated site
+        run: |
+          test -s "$RUNNER_TEMP/gmeek/docs/index.html"
+          test -s "$RUNNER_TEMP/gmeek/docs/tag.html"
+          test -s "$RUNNER_TEMP/gmeek/docs/avatar.png"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/gmeek/docs
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

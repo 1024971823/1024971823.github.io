@@ -3,7 +3,7 @@
   "displayTitle": "Srakoul ~喵",
   "subTitle": "记录嵌入式、代码与生活。写一点想法，留一点好奇。",
   "avatarUrl": "https://1024971823.github.io/avatar.png",
-  "homeUrl": "https://1024971823.github.io",
+  "homeUrl": "https://1024971823.github.io/blog",
   "email": "1024971823@users.noreply.github.com",
   "GMEEK_VERSION": "v2.22",
   "i18n": "CN",
@@ -14,6 +14,8 @@
   "urlMode": "issue",
   "needComment": 0,
   "showPostSource": 1,
-  "allHead": "<link rel=\"stylesheet\" href=\"/blog.css\">",
-  "exlink": {"GitHub": "https://github.com/1024971823"}
+  "allHead": "<link rel=\"stylesheet\" href=\"/blog/blog.css\">",
+  "exlink": {
+    "GitHub": "https://github.com/1024971823"
+  }
 }

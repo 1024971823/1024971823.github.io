@@ -54,3 +54,4 @@ if __name__ == '__main__':
          os.environ['BLOG_REPOSITORY'], '--issue_number', '0'],
         cwd=source, env=env, check=True,
     )
+

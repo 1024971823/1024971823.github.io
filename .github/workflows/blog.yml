@@ -46,8 +46,8 @@ jobs:
       - name: Verify generated site
         run: |
           test -s "$RUNNER_TEMP/gmeek/docs/index.html"
-          test -s "$RUNNER_TEMP/gmeek/docs/tag.html"
-          test -s "$RUNNER_TEMP/gmeek/docs/avatar.png"
+          test -s "$RUNNER_TEMP/gmeek/docs/blog/index.html"`n          test -s "$RUNNER_TEMP/gmeek/docs/blog/tag.html"
+          test -s "$RUNNER_TEMP/gmeek/docs/blog/avatar.png"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/gmeek/docs
@@ -63,3 +63,4 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
+

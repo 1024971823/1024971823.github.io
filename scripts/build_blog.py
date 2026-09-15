@@ -54,4 +54,11 @@ if __name__ == '__main__':
          os.environ['BLOG_REPOSITORY'], '--issue_number', '0'],
         cwd=source, env=env, check=True,
     )
+    docs = source / 'docs'
+    blog = docs / 'blog'
+    blog.mkdir()
+    for item in list(docs.iterdir()):
+        if item.name != 'blog':
+            shutil.move(str(item), str(blog / item.name))
+    shutil.copy2(workspace / 'static' / 'index.html', docs / 'index.html')
 

@@ -26,7 +26,7 @@ def prepare(source: Path, workspace: Path) -> None:
     marker = '{% block content %}'
     intro = '''{% block content %}
 <nav class="author-tools" aria-label="博客管理">
-  <a class="btn btn-primary" href="/write.html">✎ 写文章</a>
+  <a class="btn btn-primary" href="/blog/write.html">✎ 写文章</a>
   <a href="https://github.com/1024971823/1024971823.github.io/issues?q=is%3Aissue+author%3A1024971823">管理文章</a>
   <a href="/writing.html">写作指南</a>
 </nav>
@@ -63,4 +63,5 @@ if __name__ == '__main__':
     shutil.copy2(workspace / 'static' / 'index.html', docs / 'index.html')
     shutil.copy2(workspace / 'static' / 'home.css', docs / 'home.css')
     shutil.copy2(workspace / 'static' / 'avatar.png', docs / 'avatar.png')
+
 

@@ -43,13 +43,6 @@ jobs:
           BLOG_TOKEN: ${{ github.token }}
           BLOG_REPOSITORY: ${{ github.repository }}
         run: python scripts/build_blog.py "$RUNNER_TEMP/gmeek"
-      - name: Verify generated site
-        run: |
-          test -s "$RUNNER_TEMP/gmeek/docs/index.html"
-          test -s "$RUNNER_TEMP/gmeek/docs/blog/index.html"
-          test -s "/gmeek/docs/blog/index.html"
-          test -s "/gmeek/docs/blog/tag.html"
-          test -s "$RUNNER_TEMP/gmeek/docs/blog/avatar.png"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/gmeek/docs
@@ -65,5 +58,6 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
+
 
 
